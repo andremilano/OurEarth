@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OurEarth — Protect. Restore. Thrive.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Poppins:wght@300;400;500;600&family=Lato:wght@300;400&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ═══════════════════ NAVBAR ═══════════════════ -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="logo">
+        <span class="logo-icon">🌿</span>
+        <span class="logo-text">OurEarth</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#impact">Impact</a></li>
+        <li><a href="#problems">Issues</a></li>
+        <li><a href="#solutions">Solutions</a></li>
+        <li><a href="#timeline">Journey</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="#contact" class="nav-cta">Join Us</a>
+      <button class="hamburger" id="hamburger" aria-label="menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════ HERO ═══════════════════ -->
+  <section id="hero">
+    <div class="hero-bg">
+      <svg class="hero-hills" viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice"
+        xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="skyGrad" cx="50%" cy="20%" r="80%">
+            <stop offset="0%" stop-color="#D4E8C2" />
+            <stop offset="60%" stop-color="#C8D9B0" />
+            <stop offset="100%" stop-color="#A3B18A" />
+          </radialGradient>
+          <radialGradient id="sunGlow" cx="72%" cy="28%" r="18%">
+            <stop offset="0%" stop-color="#F0D080" stop-opacity="0.6" />
+            <stop offset="100%" stop-color="#F0D080" stop-opacity="0" />
+          </radialGradient>
+        </defs>
+        <!-- Sky -->
+        <rect width="1440" height="600" fill="url(#skyGrad)" />
+        <circle cx="1040" cy="160" r="90" fill="url(#sunGlow)" />
+        <ellipse cx="1042" cy="158" rx="44" ry="44" fill="#F5E090" opacity="0.55" />
+        <!-- Distant mountain -->
+        <path d="M0 340 Q200 180 400 260 Q600 180 800 240 Q1000 160 1200 220 Q1320 190 1440 250 L1440 600 L0 600Z"
+          fill="#6B8E23" opacity="0.25" />
+        <!-- Mid hills -->
+        <path d="M0 420 Q180 310 360 360 Q540 300 720 360 Q900 310 1080 370 Q1260 320 1440 380 L1440 600 L0 600Z"
+          fill="#6B8E23" opacity="0.45" />
+        <!-- Foreground hills -->
+        <path d="M0 500 Q200 430 400 480 Q600 420 800 470 Q1000 430 1200 480 Q1340 450 1440 490 L1440 600 L0 600Z"
+          fill="#4A6741" opacity="0.65" />
+        <!-- Trees silhouette left -->
+        <g fill="#3A5430" opacity="0.75">
+          <rect x="60" y="430" width="10" height="70" />
+          <polygon points="65,350 30,450 100,450" />
+          <polygon points="65,375 20,460 110,460" />
+          <rect x="130" y="450" width="8" height="55" />
+          <polygon points="134,380 105,460 163,460" />
+          <rect x="30" y="460" width="7" height="45" />
+          <polygon points="33.5,400 8,465 59,465" />
+        </g>
+        <!-- Trees silhouette right -->
+        <g fill="#3A5430" opacity="0.7">
+          <rect x="1340" y="440" width="10" height="65" />
+          <polygon points="1345,365 1315,450 1375,450" />
+          <polygon points="1345,390 1308,460 1382,460" />
+          <rect x="1390" y="455" width="8" height="50" />
+          <polygon points="1394,390 1368,460 1420,460" />
+          <rect x="1280" y="460" width="7" height="45" />
+          <polygon points="1283.5,405 1258,465 1309,465" />
+        </g>
+        <!-- Soft overlay gradient bottom -->
+        <defs>
+          <linearGradient id="bottomFade" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="60%" stop-color="#FAF7F2" stop-opacity="0" />
+            <stop offset="100%" stop-color="#FAF7F2" stop-opacity="1" />
+          </linearGradient>
+        </defs>
+        <rect width="1440" height="600" fill="url(#bottomFade)" />
+      </svg>
+    </div>
+
+    <div class="hero-content" id="heroContent">
+      <p class="hero-eyebrow reveal-up">Our Planet. Our Responsibility.</p>
+      <h1 class="hero-headline reveal-up delay-1">The Earth<br /><em>Needs You</em></h1>
+      <p class="hero-sub reveal-up delay-2">Every choice you make today writes the story<br class="hidden-mobile" /> of
+        tomorrow's world. Let's write it with care.</p>
+      <div class="hero-actions reveal-up delay-3">
+        <a href="#impact" class="btn-primary">Explore the Impact</a>
+        <a href="#solutions" class="btn-ghost">See Solutions</a>
+      </div>
+    </div>
+
+    <div class="scroll-indicator" id="scrollIndicator">
+      <span class="scroll-label">Scroll</span>
+      <div class="scroll-line">
+        <div class="scroll-dot"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ IMPACT STATS ═══════════════════ -->
+  <section id="impact" class="section-impact">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="eyebrow">The Numbers Don't Lie</span>
+        <h2 class="section-title">A Planet Under Pressure</h2>
+        <p class="section-desc">Each statistic represents real ecosystems, real species, and real communities facing the
+          consequences of inaction.</p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card reveal-up delay-1" data-target="8" data-suffix="M+"
+          data-label="Tons of plastic enter our oceans every year" data-icon="🌊">
+          <div class="stat-icon">🌊</div>
+          <div class="stat-number"><span class="count" data-val="8">0</span><span class="stat-unit">M+</span></div>
+          <p class="stat-label">Tons of plastic enter our oceans every year</p>
+        </div>
+        <div class="stat-card reveal-up delay-2" data-target="15" data-suffix="B"
+          data-label="Trees cut down globally each year" data-icon="🌲">
+          <div class="stat-icon">🌲</div>
+          <div class="stat-number"><span class="count" data-val="15">0</span><span class="stat-unit">B</span></div>
+          <p class="stat-label">Trees cut down globally each year</p>
+        </div>
+        <div class="stat-card reveal-up delay-3" data-target="1" data-suffix=".5°C"
+          data-label="Global temperature rise above pre-industrial levels" data-icon="🌡">
+          <div class="stat-icon">🌡️</div>
+          <div class="stat-number"><span class="count count-decimal" data-val="1.5">0</span><span
+              class="stat-unit">°C</span></div>
+          <p class="stat-label">Global temperature rise above pre-industrial levels</p>
+        </div>
+        <div class="stat-card reveal-up delay-1" data-target="1" data-suffix="M+"
+          data-label="Species threatened with extinction" data-icon="🦋">
+          <div class="stat-icon">🦋</div>
+          <div class="stat-number"><span class="count" data-val="1">0</span><span class="stat-unit">M+</span></div>
+          <p class="stat-label">Species threatened with extinction</p>
+        </div>
+        <div class="stat-card reveal-up delay-2" data-target="3" data-suffix="B"
+          data-label="People lack access to clean water globally" data-icon="💧">
+          <div class="stat-icon">💧</div>
+          <div class="stat-number"><span class="count" data-val="3">0</span><span class="stat-unit">B</span></div>
+          <p class="stat-label">People lack access to clean water globally</p>
+        </div>
+        <div class="stat-card reveal-up delay-3" data-target="420" data-suffix="ppm"
+          data-label="CO₂ concentration — highest in 800,000 years" data-icon="☁️">
+          <div class="stat-icon">☁️</div>
+          <div class="stat-number"><span class="count" data-val="420">0</span><span class="stat-unit">ppm</span></div>
+          <p class="stat-label">CO₂ concentration — highest in 800,000 years</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ PROBLEMS ═══════════════════ -->
+  <section id="problems" class="section-problems">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="eyebrow">Understanding the Crisis</span>
+        <h2 class="section-title">Three Wounds of Our World</h2>
+        <p class="section-desc">To heal, we must first understand. These are the most urgent environmental challenges
+          facing our generation.</p>
+      </div>
+
+      <div class="problems-grid">
+        <div class="problem-card reveal-up delay-1">
+          <div class="problem-top">
+            <div class="problem-emoji">🧴</div>
+            <div class="problem-badge">Critical</div>
+          </div>
+          <h3 class="problem-title">Plastic Pollution</h3>
+          <p class="problem-body">Over 380 million tons of plastic are produced annually. Only 9% has ever been
+            recycled. Microplastics now exist in human blood, Arctic ice, and the deepest ocean trenches.</p>
+          <div class="problem-stat">
+            <span class="ps-num">91%</span>
+            <span class="ps-text">of plastic is never recycled</span>
+          </div>
+        </div>
+
+        <div class="problem-card reveal-up delay-2">
+          <div class="problem-top">
+            <div class="problem-emoji">🌳</div>
+            <div class="problem-badge urgent">Urgent</div>
+          </div>
+          <h3 class="problem-title">Deforestation</h3>
+          <p class="problem-body">Forests cover 31% of Earth's land but are disappearing at an alarming rate. The Amazon
+            alone has lost 20% of its original extent, threatening biodiversity and carbon storage.</p>
+          <div class="problem-stat">
+            <span class="ps-num">10M</span>
+            <span class="ps-text">hectares lost every year</span>
+          </div>
+        </div>
+
+        <div class="problem-card reveal-up delay-3">
+          <div class="problem-top">
+            <div class="problem-emoji">🌍</div>
+            <div class="problem-badge severe">Severe</div>
+          </div>
+          <h3 class="problem-title">Climate Change</h3>
+          <p class="problem-body">Rising temperatures are intensifying storms, droughts, and sea-level rise. By 2050, up
+            to 216 million people could be displaced by climate-related impacts within their own countries.</p>
+          <div class="problem-stat">
+            <span class="ps-num">3.6°C</span>
+            <span class="ps-text">projected rise if we do nothing</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ SOLUTIONS ═══════════════════ -->
+  <section id="solutions" class="section-solutions">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="eyebrow">The Path Forward</span>
+        <h2 class="section-title">Small Acts. <em>Big Change.</em></h2>
+        <p class="section-desc">Sustainable living isn't a sacrifice — it's a rediscovery of what truly matters. Here's
+          where to begin.</p>
+      </div>
+
+      <div class="solutions-grid">
+        <div class="solution-card reveal-up delay-1">
+          <div class="sol-icon-wrap">
+            <svg class="sol-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24 4C13 4 4 13 4 24s9 20 20 20 20-9 20-20S35 4 24 4z" stroke="currentColor" stroke-width="2" />
+              <path d="M16 24h16M24 16v16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              <path d="M20 20l-4 4 4 4M28 20l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+          <h3>Reduce</h3>
+          <p>Cut consumption at the source. Choose quality over quantity. Buy less, but better. Opt for products with
+            minimal packaging and longer lifespans.</p>
+          <ul class="sol-tips">
+            <li>Carry reusable bags & bottles</li>
+            <li>Eat less meat & dairy</li>
+            <li>Choose digital over paper</li>
+          </ul>
+        </div>
+
+        <div class="solution-card reveal-up delay-2 sol-featured">
+          <div class="sol-icon-wrap">
+            <svg class="sol-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="2" />
+              <path d="M17 24c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" />
+              <path d="M24 31v-14M20 28l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div class="sol-featured-badge">Most Impactful</div>
+          <h3>Reuse</h3>
+          <p>Give things a second life. Repair before replacing. Borrow, share, and donate. Every item that stays in use
+            is one less in a landfill.</p>
+          <ul class="sol-tips">
+            <li>Repair broken items first</li>
+            <li>Buy & sell secondhand</li>
+            <li>Repurpose packaging creatively</li>
+          </ul>
+        </div>
+
+        <div class="solution-card reveal-up delay-3">
+          <div class="sol-icon-wrap">
+            <svg class="sol-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24 8 L36 28 H12 Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+              <path d="M20 28v8h8v-8" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+              <path d="M16 40h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              <path d="M24 18v6M24 27v1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg>
+          </div>
+          <h3>Recycle</h3>
+          <p>Transform waste into resources. Learn your local recycling rules. Composting organic waste returns
+            nutrients to the soil where they belong.</p>
+          <ul class="sol-tips">
+            <li>Sort waste properly</li>
+            <li>Compost organic matter</li>
+            <li>Choose recyclable materials</li>
+          </ul>
+        </div>
+
+        <div class="solution-card reveal-up delay-1">
+          <div class="sol-icon-wrap">
+            <svg class="sol-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24 36 C14 36 8 28 8 20 C8 12 16 6 24 10 C32 6 40 12 40 20 C40 28 34 36 24 36Z"
+                stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+              <path d="M24 36V16M24 16 C20 20 16 22 14 24" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" />
+            </svg>
+          </div>
+          <h3>Replant</h3>
+          <p>Restore what has been lost. Plant native species, support reforestation initiatives, and create green
+            spaces in your community.</p>
+          <ul class="sol-tips">
+            <li>Plant native trees & flowers</li>
+            <li>Support reforestation NGOs</li>
+            <li>Create community gardens</li>
+          </ul>
+        </div>
+
+        <div class="solution-card reveal-up delay-2">
+          <div class="sol-icon-wrap">
+            <svg class="sol-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="24" cy="24" r="10" stroke="currentColor" stroke-width="2" />
+              <path
+                d="M24 8v4M24 36v4M8 24h4M36 24h4M12.7 12.7l2.8 2.8M32.5 32.5l2.8 2.8M12.7 35.3l2.8-2.8M32.5 15.5l2.8-2.8"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg>
+          </div>
+          <h3>Renewable Energy</h3>
+          <p>Power your life with clean energy. Switch to renewable electricity providers, consider solar, and reduce
+            your home's energy consumption.</p>
+          <ul class="sol-tips">
+            <li>Switch to green energy provider</li>
+            <li>Use energy-efficient appliances</li>
+            <li>Insulate your home</li>
+          </ul>
+        </div>
+
+        <div class="solution-card reveal-up delay-3">
+          <div class="sol-icon-wrap">
+            <svg class="sol-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="24" cy="16" r="6" stroke="currentColor" stroke-width="2" />
+              <path d="M12 40c0-6.63 5.37-12 12-12s12 5.37 12 12" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" />
+              <path d="M38 28l2 2-2 2M10 28l-2 2 2 2M38 32h-6M16 32H10" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <h3>Spread Awareness</h3>
+          <p>Your voice matters. Share knowledge, vote for climate-conscious leaders, and inspire your community to take
+            meaningful action.</p>
+          <ul class="sol-tips">
+            <li>Educate friends & family</li>
+            <li>Support green policies</li>
+            <li>Join local initiatives</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ TIMELINE ═══════════════════ -->
+  <section id="timeline" class="section-timeline">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="eyebrow">Your Personal Journey</span>
+        <h2 class="section-title">Steps Toward <em>a Greener Life</em></h2>
+        <p class="section-desc">Every transformation begins with a single, intentional step. Here's a gentle roadmap for
+          your own green journey.</p>
+      </div>
+
+      <div class="timeline-wrap">
+        <div class="timeline-line">
+          <div class="timeline-progress" id="timelineProgress"></div>
+        </div>
+
+        <div class="timeline-item reveal-right" data-step="1">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <span class="tl-step">Week 1</span>
+            <h4>Audit Your Waste</h4>
+            <p>Spend one week observing your own consumption habits without judgment. What do you throw away? Where is
+              it going? Awareness is the first act of change.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal-left" data-step="2">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <span class="tl-step">Month 1</span>
+            <h4>Eliminate Single-Use Plastics</h4>
+            <p>Replace the top 5 single-use plastics in your life: shopping bags, water bottles, coffee cups, straws,
+              and food wrap. Simple swaps with lasting impact.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal-right" data-step="3">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <span class="tl-step">Month 3</span>
+            <h4>Shift Your Diet</h4>
+            <p>Try one plant-based day per week, then two. Explore local farmers' markets. Reducing meat consumption is
+              one of the highest-impact personal choices available to you.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal-left" data-step="4">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <span class="tl-step">Month 6</span>
+            <h4>Green Your Home & Energy</h4>
+            <p>Audit your home's energy use. Switch to LED lighting, smart thermostats, and a renewable energy provider.
+              Consider insulation improvements to reduce heating costs.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal-right" data-step="5">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <span class="tl-step">Year 1</span>
+            <h4>Build Your Green Community</h4>
+            <p>Share your journey. Join or start a local sustainability group. Plant trees. Support environmental
+              organizations. Your story is the most powerful tool for inspiring others.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ ABOUT ═══════════════════ -->
+  <section id="about" class="section-about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-visual reveal-up">
+          <div class="about-img-frame">
+            <svg viewBox="0 0 480 520" xmlns="http://www.w3.org/2000/svg" class="about-svg">
+              <defs>
+                <radialGradient id="bg1" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#C8D9A8" />
+                  <stop offset="100%" stop-color="#A3B18A" />
+                </radialGradient>
+                <radialGradient id="sunG" cx="70%" cy="25%" r="25%">
+                  <stop offset="0%" stop-color="#F5E090" stop-opacity="0.8" />
+                  <stop offset="100%" stop-color="#F5E090" stop-opacity="0" />
+                </radialGradient>
+              </defs>
+              <rect width="480" height="520" rx="24" fill="url(#bg1)" />
+              <rect width="480" height="520" rx="24" fill="url(#sunG)" />
+              <!-- Ground -->
+              <ellipse cx="240" cy="460" rx="240" ry="60" fill="#4A6741" opacity="0.5" />
+              <path d="M0 400 Q120 340 240 380 Q360 340 480 400 L480 520 L0 520Z" fill="#4A6741" opacity="0.7" />
+              <!-- Big tree -->
+              <rect x="225" y="250" width="30" height="180" fill="#6B4226" rx="4" />
+              <ellipse cx="240" cy="200" rx="95" ry="110" fill="#4A7A30" opacity="0.9" />
+              <ellipse cx="200" cy="230" rx="65" ry="80" fill="#5A8A35" opacity="0.8" />
+              <ellipse cx="280" cy="220" rx="70" ry="85" fill="#3D6A28" opacity="0.85" />
+              <ellipse cx="240" cy="170" rx="75" ry="90" fill="#6B9E40" opacity="0.9" />
+              <!-- Small trees -->
+              <rect x="80" y="370" width="14" height="60" fill="#6B4226" rx="3" />
+              <ellipse cx="87" cy="340" rx="38" ry="45" fill="#4A7A30" opacity="0.85" />
+              <rect x="370" y="375" width="12" height="55" fill="#6B4226" rx="3" />
+              <ellipse cx="376" cy="348" rx="32" ry="38" fill="#3D6A28" opacity="0.85" />
+              <!-- Birds -->
+              <path d="M120 120 Q125 115 130 120 Q135 115 140 120" stroke="#4A6741" stroke-width="2" fill="none"
+                stroke-linecap="round" />
+              <path d="M300 90 Q305 85 310 90 Q315 85 320 90" stroke="#4A6741" stroke-width="2" fill="none"
+                stroke-linecap="round" />
+              <!-- Sun -->
+              <circle cx="380" cy="90" r="30" fill="#F5D060" opacity="0.7" />
+            </svg>
+            <div class="about-tag">Est. 2024</div>
+          </div>
+        </div>
+
+        <div class="about-text reveal-up delay-2">
+          <span class="eyebrow">Our Story</span>
+          <h2 class="section-title">We Are <em>OurEarth</em></h2>
+          <p>OurEarth was founded by a group of scientists, artists, and everyday people who refused to accept
+            environmental decline as inevitable. We believe that education, community, and purposeful action can still
+            change the trajectory of our planet.</p>
+          <p>Our mission is simple: make environmental awareness accessible, actionable, and inspiring for everyone —
+            not just policymakers or scientists, but families, students, creators, and communities everywhere.</p>
+
+          <div class="about-values">
+            <div class="av-item">
+              <span class="av-icon">🌱</span>
+              <div>
+                <strong>Rooted in Science</strong>
+                <p>Every claim we make is grounded in peer-reviewed research and transparent data.</p>
+              </div>
+            </div>
+            <div class="av-item">
+              <span class="av-icon">🤝</span>
+              <div>
+                <strong>Community First</strong>
+                <p>Change happens person by person, community by community. We celebrate every step.</p>
+              </div>
+            </div>
+            <div class="av-item">
+              <span class="av-icon">💡</span>
+              <div>
+                <strong>Hopeful Realism</strong>
+                <p>We don't shy away from hard truths, but we always point toward practical solutions.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-team">
+            <div class="team-avatars">
+              <div class="avatar" style="background:#A3B18A">🧑‍🔬</div>
+              <div class="avatar" style="background:#8B5E3C">👩‍🌾</div>
+              <div class="avatar" style="background:#6B8E23">🧑‍💻</div>
+              <div class="avatar" style="background:#C4A882">🌿</div>
+            </div>
+            <p class="team-label">A team of <strong>12 passionate guardians</strong> across 6 countries</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ CONTACT ═══════════════════ -->
+  <section id="contact" class="section-contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-text reveal-up">
+          <span class="eyebrow">Get in Touch</span>
+          <h2 class="section-title">Let's <em>Grow Together</em></h2>
+          <p>Whether you want to collaborate, volunteer, share a story, or simply learn more — we'd love to hear from
+            you. Every connection is a seed planted.</p>
+
+          <div class="contact-channels">
+            <a href="mailto:hello@OurEarth.org" class="channel">
+              <span class="ch-icon">✉️</span>
+              <div>
+                <strong>Email Us</strong>
+                <span>hello@OurEarth.org</span>
+              </div>
+            </a>
+            <a href="#" class="channel">
+              <span class="ch-icon">📍</span>
+              <div>
+                <strong>Visit Us</strong>
+                <span>123 Green Valley Road, Portland, OR</span>
+              </div>
+            </a>
+            <div class="channel">
+              <span class="ch-icon">🌐</span>
+              <div>
+                <strong>Follow Our Journey</strong>
+                <div class="social-links">
+                  <a href="#">Instagram</a>
+                  <a href="#">Twitter</a>
+                  <a href="#">LinkedIn</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-wrap reveal-up delay-2">
+          <form class="contact-form" id="contactForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Your Name</label>
+                <input type="text" placeholder="Jane Doe" required />
+              </div>
+              <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" placeholder="jane@example.com" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Subject</label>
+              <select>
+                <option value="">How can we help?</option>
+                <option>Volunteer Opportunities</option>
+                <option>Partnership & Collaboration</option>
+                <option>Media & Press</option>
+                <option>General Inquiry</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Your Message</label>
+              <textarea rows="5"
+                placeholder="Tell us about your ideas, questions, or how you'd like to get involved..."></textarea>
+            </div>
+            <button type="submit" class="btn-submit">
+              <span>Send Message</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13" />
+                <polygon points="22 2 15 22 11 13 2 9 22 2" />
+              </svg>
+            </button>
+            <p class="form-success" id="formSuccess">🌿 Thank you! We'll get back to you within 2 days.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ CTA SECTION ═══════════════════ -->
+  <section class="section-cta">
+    <div class="cta-inner">
+      <span class="eyebrow eyebrow-light reveal-up">The Time Is Now</span>
+      <h2 class="cta-headline reveal-up delay-1">Together We Grow<br /><em>a Better Earth</em></h2>
+      <p class="cta-sub reveal-up delay-2">Join over 50,000 guardians worldwide who are making<br />conscious choices
+        for a healthier, greener future.</p>
+      <div class="cta-actions reveal-up delay-3">
+        <a href="#solutions" class="btn-cta-main">Start Your Journey</a>
+        <a href="#contact" class="btn-cta-ghost">Get in Touch</a>
+      </div>
+      <div class="cta-leaves">
+        <span class="leaf l1">🍃</span>
+        <span class="leaf l2">🌿</span>
+        <span class="leaf l3">🍃</span>
+        <span class="leaf l4">🌱</span>
+        <span class="leaf l5">🍃</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ FOOTER ═══════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#hero" class="logo">
+            <span class="logo-icon">🌿</span>
+            <span class="logo-text">OurEarth</span>
+          </a>
+          <p>Protecting our planet, one conscious choice at a time. Together, we are the change our Earth needs.</p>
+        </div>
+        <div class="footer-links">
+          <div class="fl-col">
+            <strong>Explore</strong>
+            <a href="#impact">Our Impact</a>
+            <a href="#problems">Issues</a>
+            <a href="#solutions">Solutions</a>
+            <a href="#timeline">Your Journey</a>
+          </div>
+          <div class="fl-col">
+            <strong>Organization</strong>
+            <a href="#about">About Us</a>
+            <a href="#contact">Contact</a>
+            <a href="#">Press Kit</a>
+            <a href="#">Partners</a>
+          </div>
+          <div class="fl-col">
+            <strong>Connect</strong>
+            <a href="#">Instagram</a>
+            <a href="#">Twitter</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">Newsletter</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 OurEarth. Made with 💚 for the planet.</p>
+        <p>Privacy Policy · Terms of Use</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
