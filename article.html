@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Artikel Lingkungan — EarthGuard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Poppins:wght@300;400;500;600&family=Lato:wght@300;400&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/article.css" />
+
+</head>
+
+<body>
+
+  <!-- Reading progress -->
+  <div id="readingProgress"></div>
+
+  <!-- ── Navbar ───────────────────────────────── -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">🌿</span>
+        <span class="logo-text">EarthGuard</span>
+      </a>
+      <a href="index.html" class="nav-back">
+        <svg viewBox="0 0 24 24">
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+        Kembali ke Beranda
+      </a>
+    </div>
+  </nav>
+
+  <!-- ── Article Hero ──────────────────────────── -->
+  <header class="article-hero">
+    <div class="article-hero-bg">
+      <!-- SVG Illustrated forest scene -->
+      <svg class="hero-svg" viewBox="0 0 1440 680" preserveAspectRatio="xMidYMid slice"
+        xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#A8C5E0" />
+            <stop offset="50%" stop-color="#C8D9B0" />
+            <stop offset="100%" stop-color="#8FAF60" />
+          </linearGradient>
+          <radialGradient id="sun2" cx="80%" cy="18%" r="22%">
+            <stop offset="0%" stop-color="#F8E080" stop-opacity="0.7" />
+            <stop offset="100%" stop-color="#F8E080" stop-opacity="0" />
+          </radialGradient>
+          <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#4A7030" />
+            <stop offset="100%" stop-color="#2D4A1E" />
+          </linearGradient>
+        </defs>
+        <rect width="1440" height="680" fill="url(#sky)" />
+        <rect width="1440" height="680" fill="url(#sun2)" />
+        <!-- Mist layer -->
+        <ellipse cx="720" cy="400" rx="900" ry="120" fill="rgba(255,255,255,0.08)" />
+        <!-- Far mountains -->
+        <path
+          d="M0 380 Q150 260 300 320 Q450 240 600 290 Q750 220 900 270 Q1050 200 1200 260 Q1320 230 1440 280 L1440 680 L0 680Z"
+          fill="#4A6741" opacity="0.3" />
+        <!-- Mid forest -->
+        <path d="M0 450 Q200 360 400 410 Q600 350 800 400 Q1000 350 1200 400 Q1340 370 1440 410 L1440 680 L0 680Z"
+          fill="#3D6428" opacity="0.5" />
+        <!-- Dense trees mid-left -->
+        <g fill="#2D4A20">
+          <rect x="50" y="370" width="18" height="120" />
+          <polygon points="59,270 18,385 100,385" />
+          <polygon points="59,305 10,395 108,395" />
+          <rect x="120" y="390" width="14" height="105" />
+          <polygon points="127,300 92,400 162,400" />
+          <polygon points="127,330 85,408 169,408" />
+          <rect x="180" y="380" width="16" height="110" />
+          <polygon points="188,285 150,390 226,390" />
+          <polygon points="188,318 145,398 231,398" />
+        </g>
+        <!-- Dense trees mid-right -->
+        <g fill="#2D4A20">
+          <rect x="1240" y="375" width="18" height="115" />
+          <polygon points="1249,278 1208,388 1290,388" />
+          <rect x="1300" y="385" width="16" height="108" />
+          <polygon points="1308,295 1270,395 1346,395" />
+          <rect x="1360" y="378" width="14" height="112" />
+          <polygon points="1367,285 1330,390 1404,390" />
+          <polygon points="1367,318 1325,398 1409,398" />
+        </g>
+        <!-- Foreground ground -->
+        <path d="M0 560 Q360 510 720 545 Q1080 510 1440 550 L1440 680 L0 680Z" fill="url(#ground)" />
+        <!-- Foreground grass details -->
+        <g stroke="#5A8A30" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.6">
+          <line x1="100" y1="570" x2="95" y2="545" />
+          <line x1="110" y1="568" x2="114" y2="543" />
+          <line x1="105" y1="570" x2="105" y2="542" />
+          <line x1="250" y1="558" x2="245" y2="533" />
+          <line x1="260" y1="556" x2="264" y2="531" />
+          <line x1="500" y1="552" x2="495" y2="527" />
+          <line x1="510" y1="550" x2="514" y2="525" />
+          <line x1="1200" y1="555" x2="1195" y2="530" />
+          <line x1="1210" y1="553" x2="1214" y2="528" />
+          <line x1="1350" y1="562" x2="1345" y2="537" />
+        </g>
+        <!-- Sun -->
+        <circle cx="1160" cy="100" r="45" fill="#F8DC60" opacity="0.65" />
+        <!-- Rays -->
+        <g stroke="#F8DC60" stroke-width="2" opacity="0.3" stroke-linecap="round">
+          <line x1="1160" y1="40" x2="1160" y2="25" />
+          <line x1="1160" y1="160" x2="1160" y2="175" />
+          <line x1="1100" y1="100" x2="1085" y2="100" />
+          <line x1="1220" y1="100" x2="1235" y2="100" />
+          <line x1="1118" y1="58" x2="1107" y2="47" />
+          <line x1="1202" y1="142" x2="1213" y2="153" />
+          <line x1="1202" y1="58" x2="1213" y2="47" />
+          <line x1="1118" y1="142" x2="1107" y2="153" />
+        </g>
+        <!-- Birds -->
+        <g stroke="#2D4A20" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.5">
+          <path d="M300 180 Q306 174 312 180 Q318 174 324 180" />
+          <path d="M340 165 Q344 160 348 165 Q352 160 356 165" />
+          <path d="M600 140 Q606 134 612 140 Q618 134 624 140" />
+        </g>
+      </svg>
+      <div class="hero-overlay"></div>
+    </div>
+
+    <div class="article-hero-content">
+      <div class="hero-category hero-animate ha-d1">Krisis Iklim</div>
+      <h1 class="hero-animate ha-d2">Hutan yang Diam:<br /><em>Paru-Paru Bumi Sedang Sekarat</em></h1>
+      <div class="article-meta hero-animate ha-d3">
+        <div class="meta-author">
+          <div class="author-avatar">🌱</div>
+          <div class="author-info">
+            <strong>Dr. Amara Solis</strong>
+            <span>Environmental Scientist · EarthGuard</span>
+          </div>
+        </div>
+        <div class="meta-sep"></div>
+        <span class="meta-tag">📅 12 Maret 2025</span>
+        <span class="meta-tag">⏱ 8 menit baca</span>
+        <span class="meta-tag">🌍 Deforestasi</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Article Layout ────────────────────────── -->
+  <div class="article-layout">
+
+    <!-- ── Main Article Content ── -->
+    <article class="article-body">
+
+      <p class="article-lead">
+        Setiap detik, sebuah lapangan sepak bola lahan hutan hilang dari muka bumi. Bukan karena bencana alam, bukan
+        karena waktu — melainkan karena tangan manusia yang terus merambah tanpa henti.
+      </p>
+
+      <p>
+        Bayangkan sebuah perpustakaan terbesar di dunia, yang menyimpan jutaan tahun sejarah evolusi, ribuan spesies
+        yang belum pernah dipelajari, dan kode genetik yang mungkin menjadi kunci penyembuhan penyakit masa depan. Kini
+        bayangkan perpustakaan itu terbakar, setiap harinya, tanpa ada pemadam kebakaran yang cukup.
+      </p>
+
+      <p>
+        Itulah gambaran yang paling mendekati kenyataan dari apa yang sedang terjadi pada hutan-hutan tropis kita.
+        Menurut data Global Forest Watch, dunia kehilangan <span class="stat-inline">4,1 juta</span> hektar hutan tropis
+        primer pada tahun 2023 saja — setara dengan wilayah Swiss yang raib dalam dua belas bulan.
+      </p>
+
+      <!-- Fact box -->
+      <div class="fact-box reveal">
+        <div class="fact-box-title">📊 Fakta dalam Angka</div>
+        <ul class="fact-list">
+          <li><strong>15,3 miliar pohon</strong> ditebang setiap tahun di seluruh dunia, menurut studi Nature 2015.</li>
+          <li>Sejak awal peradaban manusia, jumlah pohon di Bumi telah berkurang sekitar <strong>46 persen</strong>.
+          </li>
+          <li>Hutan hujan Amazon telah kehilangan lebih dari <strong>17% wilayah aslinya</strong> — dan mendekati titik
+            kritis 20–25% yang bisa memicu "savanisasi" permanen.</li>
+          <li>Indonesia kehilangan rata-rata <strong>684.000 hektar</strong> hutan per tahun antara 2015–2022.</li>
+          <li>Hutan menyimpan lebih dari <strong>80%</strong> keanekaragaman hayati darat di planet ini.</li>
+        </ul>
+      </div>
+
+      <!-- Section heading -->
+      <h2 id="mengapa-hutan-penting">Mengapa Hutan Jauh Lebih Penting dari yang Kita Kira</h2>
+
+      <p>
+        Selama ini, percakapan tentang deforestasi sering terjebak pada satu narasi tunggal: pohon menghasilkan oksigen.
+        Itu benar, tapi jauh dari lengkap. Peran hutan dalam sistem kehidupan Bumi jauh lebih kompleks dan jauh lebih
+        menakjubkan dari sekadar produsen oksigen.
+      </p>
+
+      <p>
+        Hutan adalah <strong>pompa air raksasa</strong>. Akar pohon menyerap air tanah dan melepaskannya ke atmosfer
+        melalui proses transpirasi, menciptakan "sungai terbang" — arus kelembaban udara yang bergerak melintasi benua
+        dan menurunkan hujan ribuan kilometer jauhnya. Ketika hutan Amazon hilang, curah hujan di ladang pertanian
+        Brasil selatan ikut berkurang. Ini bukan teori — ini sudah terjadi.
+      </p>
+
+      <!-- Pullquote -->
+      <blockquote class="pullquote reveal">
+        <p>Hutan bukan sekadar kumpulan pohon. Ia adalah internet bawah tanah, sistem imun bumi, dan mesin waktu genetik
+          — semua dalam satu ekosistem yang kita hancurkan dengan kecepatan yang belum pernah ada dalam 66 juta tahun
+          terakhir.</p>
+        <cite>— Prof. Suzanne Simard, University of British Columbia</cite>
+      </blockquote>
+
+      <p>
+        Lebih dari itu, hutan adalah <strong>penyerap karbon terbesar</strong> yang dimiliki Bumi selain lautan. Hutan
+        tropis menyimpan sekitar 250 miliar ton karbon — hampir dua kali lipat jumlah karbon yang ada di atmosfer saat
+        ini. Setiap kali hutan ini terbakar atau ditebang, karbon tersebut terlepas sekaligus, memperparah krisis iklim
+        yang sedang berlangsung.
+      </p>
+
+      <h2 id="apa-yang-mendorong-kerusakan">Apa yang Mendorong Kerusakan Ini?</h2>
+
+      <p>
+        Jawabannya tidak sederhana, dan tidak akan pernah mudah didengar: sebagian besar deforestasi global didorong
+        oleh permintaan konsumen global. Bukan oleh segelintir penjahat hutan yang bekerja dalam kegelapan — melainkan
+        oleh pilihan-pilihan kecil yang kita buat setiap hari.
+      </p>
+
+      <!-- Inline illustrated image -->
+      <figure class="article-img reveal">
+        <svg viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="chartBg" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#F5F1E8" />
+              <stop offset="100%" stop-color="#EDE8DE" />
+            </linearGradient>
+          </defs>
+          <rect width="900" height="360" fill="url(#chartBg)" />
+          <!-- Title -->
+          <text x="450" y="38" text-anchor="middle" font-family="Playfair Display, serif" font-size="17" fill="#2D2A24"
+            font-weight="700">Penyebab Utama Deforestasi Global</text>
+          <text x="450" y="58" text-anchor="middle" font-family="Lato, sans-serif" font-size="11"
+            fill="#8C8075">Berdasarkan persentase lahan hutan yang hilang (2000–2023)</text>
+
+          <!-- Bar chart -->
+          <!-- Agriculture -->
+          <rect x="80" y="90" width="548" height="38" rx="6" fill="#6B8E23" opacity="0.85" />
+          <text x="88" y="115" font-family="Poppins, sans-serif" font-size="12" fill="white" font-weight="600">Pertanian
+            & Perkebunan (Kelapa Sawit, Kedelai, dll)</text>
+          <text x="636" y="115" font-family="Poppins, sans-serif" font-size="13" fill="#6B8E23"
+            font-weight="700">73%</text>
+
+          <!-- Cattle -->
+          <rect x="80" y="148" width="367" height="38" rx="6" fill="#8B5E3C" opacity="0.8" />
+          <text x="88" y="173" font-family="Poppins, sans-serif" font-size="12" fill="white"
+            font-weight="600">Peternakan Sapi</text>
+          <text x="455" y="173" font-family="Poppins, sans-serif" font-size="13" fill="#8B5E3C"
+            font-weight="700">49%</text>
+
+          <!-- Logging -->
+          <rect x="80" y="206" width="240" height="38" rx="6" fill="#A3B18A" opacity="0.9" />
+          <text x="88" y="231" font-family="Poppins, sans-serif" font-size="12" fill="white"
+            font-weight="600">Penebangan Kayu</text>
+          <text x="328" y="231" font-family="Poppins, sans-serif" font-size="13" fill="#5C7845"
+            font-weight="700">32%</text>
+
+          <!-- Mining -->
+          <rect x="80" y="264" width="120" height="38" rx="6" fill="#C4A882" opacity="0.9" />
+          <text x="88" y="289" font-family="Poppins, sans-serif" font-size="12" fill="white"
+            font-weight="600">Pertambangan</text>
+          <text x="208" y="289" font-family="Poppins, sans-serif" font-size="13" fill="#8B6840"
+            font-weight="700">16%</text>
+
+          <!-- Infrastructure -->
+          <rect x="80" y="322" width="67" height="28" rx="6" fill="#D4C4AA" opacity="0.9" />
+          <text x="88" y="341" font-family="Poppins, sans-serif" font-size="11" fill="#5C5448"
+            font-weight="600">Infrastruktur</text>
+          <text x="155" y="341" font-family="Poppins, sans-serif" font-size="12" fill="#8C8075"
+            font-weight="700">9%</text>
+
+          <!-- Note -->
+          <text x="450" y="358" text-anchor="middle" font-family="Lato, sans-serif" font-size="10" fill="#8C8075"
+            font-style="italic">*Persentase dapat melebihi 100% karena satu area bisa memiliki beberapa penyebab</text>
+        </svg>
+        <figcaption>Diagram penyebab utama hilangnya hutan global. Pertanian mendominasi hampir tiga per empat dari
+          total kerusakan. Sumber: Global Forest Watch, 2023.</figcaption>
+      </figure>
+
+      <p>
+        Perkebunan kelapa sawit, peternakan sapi, ladang kedelai, dan tambang mineral — semua ini berkembang untuk
+        memenuhi permintaan global yang terus meningkat. Sebotol sampo, sepotong burger, atau sehelai kertas mungkin
+        mengandung jejak deforestasi yang tidak pernah kita bayangkan.
+      </p>
+
+      <p>
+        Ini bukan untuk menyalahkan individu semata. Sistem ekonomi global yang belum menghitung biaya lingkungan ke
+        dalam harga barang adalah akar masalah yang lebih dalam. Namun mengetahui keterkaitan ini adalah langkah pertama
+        yang penting.
+      </p>
+
+      <div class="article-divider"><span></span><i>🌿</i><span></span></div>
+
+      <h2 id="titik-kritis">Titik Kritis yang Harus Kita Hindari</h2>
+
+      <p>
+        Para ilmuwan iklim memperingatkan tentang konsep "tipping point" — titik kritis di mana kerusakan lingkungan
+        menjadi bola salju yang tidak dapat dihentikan lagi, bahkan jika kita berhenti sepenuhnya.
+      </p>
+
+      <p>
+        Untuk Amazon, titik kritis ini diperkirakan ada di antara kehilangan <span class="stat-inline">20–25%</span>
+        dari total luas hutan. Saat ini, kita sudah kehilangan sekitar 17%. Ketika kawasan hutan menyusut melampaui
+        ambang tersebut, siklus hujan regional akan terganggu secara permanen, mengubah hutan hujan tropis yang lembab
+        menjadi sabana kering.
+      </p>
+
+      <p>
+        Perubahan ini tidak hanya berdampak pada Brasil — tapi pada pola curah hujan di Amerika Selatan, Afrika Barat,
+        dan sebagian Asia. Hutan Amazon, pada dasarnya, adalah infrastruktur iklim bagi hampir satu miliar orang.
+      </p>
+
+      <blockquote class="pullquote reveal">
+        <p>Kita tidak boleh menunggu bukti yang sempurna sebelum bertindak. Saat buktinya sempurna, mungkin sudah
+          terlambat untuk bertindak apapun.</p>
+        <cite>— Dr. Carlos Nobre, Climate Scientist, INPA Brazil</cite>
+      </blockquote>
+
+      <h2 id="harapan-dan-solusi">Ada Harapan: Apa yang Bisa Kita Lakukan</h2>
+
+      <p>
+        Di tengah semua ini, ada kabar yang tidak boleh kita abaikan: hutan bisa pulih. Penelitian terbaru menunjukkan
+        bahwa hutan tropis sekunder yang ditinggalkan selama 20 tahun dapat memulihkan hingga 80% dari biomassanya. Alam
+        ingin menyembuhkan dirinya sendiri — ia hanya butuh kesempatan.
+      </p>
+
+      <div class="fact-box reveal">
+        <div class="fact-box-title">🌱 Langkah Nyata yang Bisa Dimulai Hari Ini</div>
+        <ul class="fact-list">
+          <li><strong>Periksa label produk.</strong> Cari sertifikasi RSPO untuk kelapa sawit berkelanjutan, atau FSC
+            untuk produk kayu. Satu keputusan pembelian adalah satu suara untuk hutan.</li>
+          <li><strong>Kurangi konsumsi daging sapi.</strong> Peternakan sapi adalah penyebab terbesar deforestasi
+            Amazon. Mengurangi satu porsi burger per minggu memiliki dampak karbon yang signifikan.</li>
+          <li><strong>Dukung organisasi reforestasi.</strong> Organisasi seperti One Tree Planted, Trees for the Future,
+            dan Yayasan KEHATI bekerja langsung di lapangan dengan hasil yang terukur.</li>
+          <li><strong>Gunakan kertas dan produk kayu secara bijak.</strong> Cetak hanya ketika benar-benar perlu, pilih
+            kertas daur ulang, dan dukung kebijakan paperless di tempat kerja.</li>
+          <li><strong>Suarakan perubahan kebijakan.</strong> Hubungi wakil rakyat, dukung regulasi anti-deforestasi, dan
+            ikut dalam kampanye yang mendorong akuntabilitas korporasi.</li>
+        </ul>
+      </div>
+
+      <p>
+        Gerakan reforestasi global juga menunjukkan momentum yang menggembirakan. Bonn Challenge — inisiatif untuk
+        merestorasi 350 juta hektar lahan terdegradasi pada 2030 — telah mendapat komitmen dari lebih dari 70 negara.
+        Ethiopia menanam 350 juta pohon dalam satu hari pada 2019. Indonesia mendeklarasikan moratorium pembukaan hutan
+        baru, meski implementasinya masih perlu pengawasan ketat.
+      </p>
+
+      <p>
+        Yang paling penting untuk diingat adalah ini: tidak ada tindakan yang terlalu kecil, dan tidak ada orang yang
+        terlalu biasa untuk membuat perubahan. Hutan yang kita lindungi hari ini adalah hutan yang akan mendinginkan
+        bumi, menyimpan air, dan menyimpan kehidupan bagi generasi yang belum lahir.
+      </p>
+
+      <p>
+        Pertanyaannya bukan lagi apakah kita mampu bertindak. Pertanyaannya adalah: <em>apakah kita akan memilih untuk
+          melakukannya?</em>
+      </p>
+
+      <!-- Tags -->
+      <div class="article-tags">
+        <span>Tags:</span>
+        <span class="tag-pill">Deforestasi</span>
+        <span class="tag-pill">Hutan Tropis</span>
+        <span class="tag-pill">Krisis Iklim</span>
+        <span class="tag-pill">Amazon</span>
+        <span class="tag-pill">Biodiversitas</span>
+        <span class="tag-pill">Solusi Lingkungan</span>
+      </div>
+
+      <!-- Share bar -->
+      <div class="share-bar">
+        <span class="share-label">Bagikan</span>
+        <button class="share-btn" onclick="copyLink()">
+          🔗 Salin Tautan
+        </button>
+        <button class="share-btn">
+          🐦 Twitter
+        </button>
+        <button class="share-btn">
+          💼 LinkedIn
+        </button>
+        <button class="share-btn">
+          📱 WhatsApp
+        </button>
+      </div>
+
+    </article>
+
+    <!-- ── Sidebar ── -->
+    <aside class="article-sidebar">
+
+      <!-- Table of Contents -->
+      <div class="toc-card reveal">
+        <div class="toc-title">Daftar Isi</div>
+        <ul class="toc-list" id="tocList">
+          <li><a href="#mengapa-hutan-penting" class="toc-link">Mengapa Hutan Sangat Penting</a></li>
+          <li><a href="#apa-yang-mendorong-kerusakan" class="toc-link">Apa yang Mendorong Kerusakan</a></li>
+          <li><a href="#titik-kritis" class="toc-link">Titik Kritis yang Harus Dihindari</a></li>
+          <li><a href="#harapan-dan-solusi" class="toc-link">Harapan dan Solusi</a></li>
+        </ul>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="nl-card reveal delay-1">
+        <h4>Tetap Terinformasi,<br />Tetap Tergerak</h4>
+        <p>Dapatkan artikel, data, dan panduan aksi lingkungan langsung di kotak masukmu — setiap dua minggu.</p>
+        <div class="nl-input-wrap">
+          <input type="email" placeholder="email@kamu.com" />
+          <button class="nl-btn">Subscribe Gratis</button>
+        </div>
+      </div>
+
+      <!-- Related articles -->
+      <div class="related-card reveal delay-2">
+        <div class="related-title">Artikel Terkait</div>
+        <ul class="related-list">
+          <li class="related-item">
+            <div class="related-thumb" style="background:#EDE8DE">🌊</div>
+            <div class="related-item-text">
+              <strong>Plastik di Lautan: Ancaman yang Tak Kasat Mata</strong>
+              <span>6 menit baca · Polusi Plastik</span>
+            </div>
+          </li>
+          <li class="related-item">
+            <div class="related-thumb" style="background:#E8D9C0">☀️</div>
+            <div class="related-item-text">
+              <strong>Energi Surya: Lebih Murah dari Kita Kira</strong>
+              <span>5 menit baca · Energi Terbarukan</span>
+            </div>
+          </li>
+          <li class="related-item">
+            <div class="related-thumb" style="background:#C8D9B0">🌾</div>
+            <div class="related-item-text">
+              <strong>Pertanian Regeneratif: Masa Depan Pangan</strong>
+              <span>7 menit baca · Pertanian</span>
+            </div>
+          </li>
+          <li class="related-item">
+            <div class="related-thumb" style="background:#EDE8DE">🦁</div>
+            <div class="related-item-text">
+              <strong>1 Juta Spesies Terancam: Krisis Keenam</strong>
+              <span>9 menit baca · Biodiversitas</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- ── More Articles ─────────────────────────── -->
+  <section class="more-articles">
+    <div class="container">
+      <div class="more-header reveal">
+        <h2>Artikel <em>Lainnya</em></h2>
+        <a href="#">Lihat Semua Artikel →</a>
+      </div>
+
+      <div class="articles-grid">
+
+        <article class="art-card reveal delay-1">
+          <div class="art-thumb" style="background: linear-gradient(135deg, #A8C5E0, #6B9EBC);">🌊</div>
+          <div class="art-card-body">
+            <span class="art-cat">Polusi Plastik</span>
+            <h3>Mikroplastik Ditemukan di Darah Manusia: Apa Artinya?</h3>
+            <p>Sebuah penelitian landmark mengkonfirmasi keberadaan partikel plastik dalam aliran darah manusia.
+              Implikasinya untuk kesehatan baru mulai dipahami.</p>
+            <div class="art-footer">
+              <span class="art-author">Dr. Lena Marsh · 6 mnt baca</span>
+              <span class="art-read">Baca →</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="art-card reveal delay-2">
+          <div class="art-thumb" style="background: linear-gradient(135deg, #F5E090, #E8C840);">☀️</div>
+          <div class="art-card-body">
+            <span class="art-cat">Energi Terbarukan</span>
+            <h3>Revolusi Tenaga Surya: Mengapa 2025 Menjadi Titik Balik</h3>
+            <p>Harga panel surya turun 90% dalam satu dekade. Kini energi surya lebih murah dari batu bara di sebagian
+              besar dunia — dan itu mengubah segalanya.</p>
+            <div class="art-footer">
+              <span class="art-author">Kai Okonkwo · 5 mnt baca</span>
+              <span class="art-read">Baca →</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="art-card reveal delay-3">
+          <div class="art-thumb" style="background: linear-gradient(135deg, #C8D9B0, #8FAF60);">🌾</div>
+          <div class="art-card-body">
+            <span class="art-cat">Pangan & Pertanian</span>
+            <h3>Makan untuk Bumi: Panduan Diet Rendah Karbon</h3>
+            <p>Pilihan makanan kita bertanggung jawab atas 26% emisi gas rumah kaca global. Tapi perubahan kecil di
+              piring kita bisa berdampak besar bagi iklim.</p>
+            <div class="art-footer">
+              <span class="art-author">Priya Nair · 7 mnt baca</span>
+              <span class="art-read">Baca →</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA Strip ──────────────────────────────── -->
+  <section class="cta-strip">
+    <div class="cta-strip-inner">
+      <h3 class="reveal">Pengetahuan adalah<br /><em>Kekuatan untuk Berubah</em></h3>
+      <p class="reveal delay-1">Bergabunglah dengan 50.000+ pembaca yang menggunakan wawasan ini untuk membuat pilihan
+        yang lebih baik setiap harinya.</p>
+      <div class="cta-strip-btns reveal delay-2">
+        <a href="index.html#contact" class="btn-strip-main">Bergabung Sekarang</a>
+        <a href="index.html" class="btn-strip-ghost">Kembali ke Beranda</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ────────────────────────────────── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">🌿</span>
+        <span class="logo-text">EarthGuard</span>
+      </a>
+      <p>© 2025 EarthGuard. Dibuat dengan 💚 untuk bumi.</p>
+    </div>
+  </footer>
+
+  <script src="js/article.js"></script>
+
+</body>
+
+</html>
