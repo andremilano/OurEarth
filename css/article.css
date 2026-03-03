@@ -70,7 +70,11 @@ img { display: block; max-width: 100%; }
   white-space: nowrap;
 }
 .logo-icon { font-size: 1.5rem; }
-.logo-text { color: #fff; transition: color 0.3s; }
+.logo-text { 
+  color: #fff; 
+  transition: color 0.3s; 
+  font-size: 2rem;
+}
 #navbar.scrolled .logo-text { color: var(--text-dark); }
 .nav-back {
   margin-left: auto;
