@@ -523,6 +523,44 @@ p { font-family: var(--font-body); color: var(--text-mid); }
   line-height: 1.4;
 }
 
+.problems-cta {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.btn-map {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: transparent;
+  color: var(--olive);
+  font-family: var(--font-head);
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.85rem 2rem;
+  border-radius: 50px;
+  border: 2px solid var(--olive);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-map:hover {
+  background: var(--olive);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(107,142,35,0.25);
+}
+
+.btn-map svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.3s ease;
+}
+
+.btn-map:hover svg {
+  transform: rotate(-10deg) scale(1.15);
+}
+
 /* ═══════════════ SOLUTIONS ════════════════ */
 .section-solutions {
   padding: 7rem 0;

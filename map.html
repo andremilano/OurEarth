@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Global Issues Map — OurEarth</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&family=Lato:wght@300;400&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/map.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <span>OurEarth</span>
+      </a>
+      <a href="index.html" class="nav-back">
+        <svg viewBox="0 0 24 24">
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+        Beranda
+      </a>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+
+    <!-- ── Left Panel ── -->
+    <aside class="left-panel">
+      <div class="panel-header">
+        <h2>Peta Isu Lingkungan Dunia</h2>
+        <p>Klik region untuk melihat detail krisis</p>
+      </div>
+
+      <div class="filter-wrap">
+        <span class="filter-label">Filter Isu</span>
+        <div class="filter-pills">
+          <div class="filter-pill active" data-issue="all">
+            <span class="pill-dot" style="background:#A3B18A"></span> Semua
+          </div>
+          <div class="filter-pill" data-issue="deforestation">
+            <span class="pill-dot" style="background:var(--issue-deforest)"></span> Deforestasi
+          </div>
+          <div class="filter-pill" data-issue="plastic">
+            <span class="pill-dot" style="background:var(--issue-plastic)"></span> Plastik
+          </div>
+          <div class="filter-pill" data-issue="climate">
+            <span class="pill-dot" style="background:var(--issue-climate)"></span> Iklim
+          </div>
+          <div class="filter-pill" data-issue="water">
+            <span class="pill-dot" style="background:var(--issue-water)"></span> Air Bersih
+          </div>
+          <div class="filter-pill" data-issue="pollution">
+            <span class="pill-dot" style="background:var(--issue-pollution)"></span> Polusi Udara
+          </div>
+          <div class="filter-pill" data-issue="desertification">
+            <span class="pill-dot" style="background:var(--issue-desert)"></span> Desertifikasi
+          </div>
+          <div class="filter-pill" data-issue="ice">
+            <span class="pill-dot" style="background:var(--issue-ice)"></span> Es Mencair
+          </div>
+          <div class="filter-pill" data-issue="coral">
+            <span class="pill-dot" style="background:var(--issue-coral)"></span> Terumbu Karang
+          </div>
+        </div>
+      </div>
+
+      <div class="region-list" id="regionList">
+        <!-- Populated by JS -->
+      </div>
+
+      <div class="panel-stats">
+        <div class="ps-item">
+          <span class="ps-val">8</span>
+          <span class="ps-label">Isu Lingkungan Kritis</span>
+        </div>
+        <div class="ps-item">
+          <span class="ps-val">10</span>
+          <span class="ps-label">Region Terdampak</span>
+        </div>
+        <div class="ps-item">
+          <span class="ps-val">7.9B</span>
+          <span class="ps-label">Manusia Terpengaruh</span>
+        </div>
+        <div class="ps-item">
+          <span class="ps-val">2050</span>
+          <span class="ps-label">Batas Kritis Iklim</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ── Map Area ── -->
+    <main class="map-area">
+      <div class="map-canvas">
+
+        <!-- World SVG Map -->
+        <svg id="worldMap" viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <!-- Glow filters -->
+            <filter id="glow-green">
+              <feGaussianBlur stdDeviation="3" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+            <filter id="glow-blue">
+              <feGaussianBlur stdDeviation="3" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+            <filter id="glow-orange">
+              <feGaussianBlur stdDeviation="3" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+            <!-- Topographic texture -->
+            <pattern id="topo" width="40" height="40" patternUnits="userSpaceOnUse">
+              <circle cx="20" cy="20" r="15" fill="none" stroke="rgba(107,142,35,0.06)" stroke-width="0.5" />
+              <circle cx="20" cy="20" r="8" fill="none" stroke="rgba(107,142,35,0.04)" stroke-width="0.5" />
+            </pattern>
+          </defs>
+
+          <!-- Ocean background -->
+          <rect class="ocean" width="1000" height="500" rx="4" />
+          <rect width="1000" height="500" fill="url(#topo)" />
+
+          <!-- Grid lines -->
+          <g class="grid-lines">
+            <!-- Latitude lines -->
+            <line class="grid-line" x1="0" y1="125" x2="1000" y2="125" />
+            <line class="grid-line" x1="0" y1="250" x2="1000" y2="250" />
+            <line class="grid-line" x1="0" y1="375" x2="1000" y2="375" />
+            <!-- Longitude lines -->
+            <line class="grid-line" x1="250" y1="0" x2="250" y2="500" />
+            <line class="grid-line" x1="500" y1="0" x2="500" y2="500" />
+            <line class="grid-line" x1="750" y1="0" x2="750" y2="500" />
+          </g>
+
+          <!-- ─── CONTINENTS / REGIONS ─── -->
+
+          <!-- North America -->
+          <g class="map-region" id="region-north-america" data-region="north-america">
+            <path
+              d="M55 60 L80 50 L120 45 L160 50 L190 60 L210 75 L220 95 L215 120 L205 140 L195 160 L185 175 L175 190 L160 200 L145 205 L130 200 L115 190 L100 175 L85 160 L70 145 L60 130 L50 110 L48 90 Z"
+              fill="#4A7A35" opacity="0.75" />
+            <!-- Alaska -->
+            <path d="M55 60 L40 55 L25 65 L20 80 L35 75 L50 68 Z" fill="#4A7A35" opacity="0.65" />
+            <!-- Central America stub -->
+            <path d="M175 190 L180 210 L170 225 L160 215 L165 200 Z" fill="#4A7A35" opacity="0.6" />
+          </g>
+
+          <!-- Greenland -->
+          <g class="map-region" id="region-arctic" data-region="arctic">
+            <ellipse cx="195" cy="28" rx="35" ry="20" fill="#6ABBE0" opacity="0.5" />
+            <!-- Arctic ice cap -->
+            <ellipse cx="500" cy="8" rx="200" ry="12" fill="#6ABBE0" opacity="0.3" />
+            <text class="map-label" x="195" y="31" text-anchor="middle">ARCTIC</text>
+          </g>
+
+          <!-- South America -->
+          <g class="map-region" id="region-south-america" data-region="south-america">
+            <path
+              d="M170 225 L190 220 L210 225 L230 235 L245 255 L255 278 L260 305 L258 335 L250 360 L235 380 L215 395 L195 398 L178 390 L165 370 L158 348 L155 320 L155 295 L158 268 L163 248 Z"
+              fill="#5A8A2A" opacity="0.78" />
+          </g>
+
+          <!-- Europe -->
+          <g class="map-region" id="region-europe" data-region="europe">
+            <path
+              d="M430 55 L460 50 L490 52 L515 58 L525 70 L520 85 L510 95 L495 100 L480 105 L465 108 L450 105 L440 95 L432 82 L428 68 Z"
+              fill="#7A9E4A" opacity="0.72" />
+            <!-- Scandinavia -->
+            <path d="M470 30 L485 28 L498 35 L495 50 L480 55 L468 48 L465 38 Z" fill="#7A9E4A" opacity="0.65" />
+            <!-- UK -->
+            <ellipse cx="425" cy="70" rx="12" ry="16" fill="#7A9E4A" opacity="0.6" />
+          </g>
+
+          <!-- Africa -->
+          <g class="map-region" id="region-africa" data-region="africa">
+            <path
+              d="M440 125 L470 118 L505 120 L528 128 L540 148 L545 172 L542 200 L535 228 L525 255 L510 278 L490 298 L468 310 L448 308 L430 295 L418 272 L412 248 L410 222 L412 195 L416 168 L422 145 Z"
+              fill="#C4933A" opacity="0.7" />
+            <!-- Madagascar -->
+            <ellipse cx="548" cy="268" rx="10" ry="22" fill="#C4933A" opacity="0.55"
+              transform="rotate(-15, 548, 268)" />
+          </g>
+
+          <!-- Middle East -->
+          <g class="map-region" id="region-middle-east" data-region="middle-east">
+            <path d="M528 128 L565 122 L595 125 L610 138 L608 158 L595 168 L575 172 L555 170 L540 160 L535 145 Z"
+              fill="#D4A84A" opacity="0.65" />
+          </g>
+
+          <!-- Russia / North Asia -->
+          <g class="map-region" id="region-russia" data-region="russia">
+            <path
+              d="M490 52 L560 42 L640 38 L720 40 L790 45 L840 52 L860 65 L850 82 L820 90 L780 95 L740 98 L700 100 L660 98 L620 95 L580 92 L545 90 L520 85 L510 75 L505 62 Z"
+              fill="#4A6E8A" opacity="0.6" />
+          </g>
+
+          <!-- South / Southeast Asia -->
+          <g class="map-region" id="region-south-asia" data-region="south-asia">
+            <!-- Indian subcontinent -->
+            <path
+              d="M610 138 L645 130 L678 135 L695 155 L690 180 L678 200 L658 215 L638 215 L618 200 L608 180 L605 160 Z"
+              fill="#7B6E2A" opacity="0.7" />
+            <!-- SE Asia mainland -->
+            <path d="M700 140 L735 132 L762 140 L775 158 L768 178 L750 188 L728 185 L710 172 L702 158 Z" fill="#5A7A3A"
+              opacity="0.68" />
+            <!-- Indonesia / archipelago -->
+            <ellipse cx="758" cy="215" rx="25" ry="9" fill="#5A8A2A" opacity="0.65" />
+            <ellipse cx="800" cy="220" rx="18" ry="7" fill="#5A8A2A" opacity="0.6" />
+            <ellipse cx="720" cy="210" rx="14" ry="6" fill="#5A8A2A" opacity="0.6" />
+            <!-- Philippines -->
+            <ellipse cx="790" cy="188" rx="10" ry="18" fill="#5A7A3A" opacity="0.55" />
+          </g>
+
+          <!-- East Asia -->
+          <g class="map-region" id="region-east-asia" data-region="east-asia">
+            <path d="M735 90 L790 85 L835 90 L855 108 L848 132 L828 148 L800 155 L770 150 L748 138 L738 118 Z"
+              fill="#6B5A3A" opacity="0.68" />
+            <!-- Japan -->
+            <ellipse cx="858" cy="110" rx="10" ry="24" fill="#6B5A3A" opacity="0.55" transform="rotate(20, 858, 110)" />
+          </g>
+
+          <!-- Australia / Oceania -->
+          <g class="map-region" id="region-oceania" data-region="oceania">
+            <path
+              d="M750 290 L800 278 L848 285 L875 305 L878 335 L862 358 L835 370 L805 368 L778 352 L762 328 L752 308 Z"
+              fill="#8B7A3A" opacity="0.65" />
+            <!-- New Zealand -->
+            <ellipse cx="900" cy="378" rx="10" ry="20" fill="#8B7A3A" opacity="0.5" transform="rotate(15, 900, 378)" />
+          </g>
+
+          <!-- Antarctica -->
+          <g class="map-region" id="region-antarctic" data-region="antarctic">
+            <ellipse cx="500" cy="490" rx="300" ry="18" fill="#6ABBE0" opacity="0.35" />
+            <text class="map-label" x="500" y="492" text-anchor="middle">ANTARCTICA</text>
+          </g>
+
+          <!-- ─── ISSUE PINS ─── -->
+          <g id="mapPins">
+
+            <!-- Amazon Deforestation -->
+            <g class="map-pin" data-region="south-america" data-issue="deforestation" data-label="Deforestasi Amazon"
+              transform="translate(205,290)">
+              <circle class="pin-ring" r="10" stroke="#5A8A2A" />
+              <circle class="pin-dot" r="5" fill="#5A8A2A" />
+              <circle r="2.5" fill="#fff" opacity="0.8" />
+            </g>
+
+            <!-- Borneo Deforestation -->
+            <g class="map-pin" data-region="south-asia" data-issue="deforestation" data-label="Deforestasi Borneo"
+              transform="translate(770,210)">
+              <circle class="pin-ring" r="10" stroke="#5A8A2A" />
+              <circle class="pin-dot" r="5" fill="#5A8A2A" />
+              <circle r="2.5" fill="#fff" opacity="0.8" />
+            </g>
+
+            <!-- Pacific Plastic Gyre -->
+            <g class="map-pin" data-region="oceania" data-issue="plastic" data-label="Great Pacific Garbage Patch"
+              transform="translate(880,240)">
+              <circle class="pin-ring" r="10" stroke="#4A7DB5" />
+              <circle class="pin-dot" r="5" fill="#4A7DB5" />
+              <circle r="2.5" fill="#fff" opacity="0.8" />
+            </g>
+
+            <!-- Sahara Desertification -->
+            <g class="map-pin" data-region="africa" data-issue="desertification" data-label="Perluasan Sahara"
+              transform="translate(470,170)">
+              <circle class="pin-ring" r="10" stroke="#C4933A" />
+              <circle class="pin-dot" r="5" fill="#C4933A" />
+              <circle r="2.5" fill="#fff" opacity="0.8" />
+            </g>
+
+            <!-- Arctic Ice Loss -->
+            <g class="map-pin" data-region="arctic" data-issue="ice" data-label="Pencairan Es Arktik"
+              transform="translate(300,22)">
+              <circle class="pin-ring" r="10" stroke="#6ABBE0" />
+              <circle class="pin-dot" r="5" fill="#6ABBE0" />
+              <circle r="2.5" fill="#fff" opacity="0.8" />
+            </g>
+
+            <!-- Beijing Air Pollution -->
+            <g class="map-pin" data-region="east-asia" data-issue="pollution" data-label="Polusi Udara Tiongkok"
+              transform="translate(790,108)">
+              <circle class="pin-ring" r="10" stroke="#9B6BC4" />
+              <circle class="pin-dot" r="5" fill="#9B6BC4" />
+              <circle r="2.5" fill="#fff" opacity="0.8" />
+            </g>
+
+            <!-- Great Barrier Reef -->
+            <g class="map-pin" data-region="oceania" data-issue="coral" data-label="Pemutihan Terumbu Karang"
+              transform="translate(855,328)">
+              <circle class="pin-ring" r="10" stroke="#E06A5A" />
+              <circle class="pin-dot" r="5" fill="#E06A5A" />
+              <circle r="2.5" fill="#fff" opacity="0.8" />
+            </g>
+
+            <!-- Middle East Water Crisis -->
+            <g class="map-pin" data-region="middle-east" data-issue="water" data-label="Krisis Air Timur Tengah"
+              transform="translate(572,148)">
+              <circle class="pin-ring" r="10" stroke="#3A9EBF" />
+              <circle class="pin-dot" r="5" fill="#3A9EBF" />
+              <circle r="2.5" fill="#fff" opacity="0.8" />
+            </g>
+
+            <!-- Europe Climate -->
+            <g class="map-pin" data-region="europe" data-issue="climate" data-label="Gelombang Panas Eropa"
+              transform="translate(472,80)">
+              <circle class="pin-ring" r="10" stroke="#C65D2A" />
+              <circle class="pin-dot" r="5" fill="#C65D2A" />
+              <circle r="2.5" fill="#fff" opacity="0.8" />
+            </g>
+
+            <!-- India Water Stress -->
+            <g class="map-pin" data-region="south-asia" data-issue="water" data-label="Stres Air India"
+              transform="translate(648,178)">
+              <circle class="pin-ring" r="10" stroke="#3A9EBF" />
+              <circle class="pin-dot" r="5" fill="#3A9EBF" />
+              <circle r="2.5" fill="#fff" opacity="0.8" />
+            </g>
+
+            <!-- North America Wildfires -->
+            <g class="map-pin" data-region="north-america" data-issue="climate" data-label="Kebakaran Hutan Amerika"
+              transform="translate(130,140)">
+              <circle class="pin-ring" r="10" stroke="#C65D2A" />
+              <circle class="pin-dot" r="5" fill="#C65D2A" />
+              <circle r="2.5" fill="#fff" opacity="0.8" />
+            </g>
+
+            <!-- Antarctic Ice Sheet -->
+            <g class="map-pin" data-region="antarctic" data-issue="ice" data-label="Pencairan Lapisan Es Antartika"
+              transform="translate(500,482)">
+              <circle class="pin-ring" r="10" stroke="#6ABBE0" />
+              <circle class="pin-dot" r="5" fill="#6ABBE0" />
+              <circle r="2.5" fill="#fff" opacity="0.8" />
+            </g>
+
+          </g><!-- /mapPins -->
+
+          <!-- Region labels -->
+          <text class="map-label" x="135" y="120" text-anchor="middle">NORTH AMERICA</text>
+          <text class="map-label" x="210" y="310" text-anchor="middle">SOUTH AMERICA</text>
+          <text class="map-label" x="474" y="82" text-anchor="middle">EUROPE</text>
+          <text class="map-label" x="478" y="225" text-anchor="middle">AFRICA</text>
+          <text class="map-label" x="572" y="152" text-anchor="middle" font-size="7">MID EAST</text>
+          <text class="map-label" x="675" y="68" text-anchor="middle">RUSSIA</text>
+          <text class="map-label" x="650" y="175" text-anchor="middle">S. ASIA</text>
+          <text class="map-label" x="790" y="120" text-anchor="middle">E. ASIA</text>
+          <text class="map-label" x="812" y="330" text-anchor="middle">OCEANIA</text>
+
+        </svg><!-- /worldMap -->
+
+        <!-- Tooltip -->
+        <div id="mapTooltip">
+          <strong id="ttTitle"></strong>
+          <span id="ttSub"></span>
+        </div>
+
+        <!-- Issue legend -->
+        <div class="issue-legend">
+          <span class="il-title">Legenda Isu</span>
+          <div class="il-items">
+            <div class="il-item"><span class="il-dot" style="background:#5A8A2A"></span>Deforestasi</div>
+            <div class="il-item"><span class="il-dot" style="background:#4A7DB5"></span>Plastik Laut</div>
+            <div class="il-item"><span class="il-dot" style="background:#C65D2A"></span>Krisis Iklim</div>
+            <div class="il-item"><span class="il-dot" style="background:#3A9EBF"></span>Air Bersih</div>
+            <div class="il-item"><span class="il-dot" style="background:#9B6BC4"></span>Polusi Udara</div>
+            <div class="il-item"><span class="il-dot" style="background:#C4933A"></span>Desertifikasi</div>
+            <div class="il-item"><span class="il-dot" style="background:#6ABBE0"></span>Es Mencair</div>
+            <div class="il-item"><span class="il-dot" style="background:#E06A5A"></span>Terumbu Karang</div>
+          </div>
+        </div>
+
+        <!-- Map controls hint -->
+        <div class="map-controls">
+          <div class="map-hint">
+            🖱️ Klik region atau pin <span>·</span> Hover untuk info cepat
+          </div>
+        </div>
+
+      </div><!-- /map-canvas -->
+
+      <!-- Info Panel -->
+      <div class="info-panel" id="infoPanel">
+        <div class="ip-header">
+          <span class="ip-region-emoji" id="ipEmoji">🌍</span>
+          <div class="ip-region-name" id="ipName">Region</div>
+          <div class="ip-region-sub" id="ipSub">Pilih region untuk detail</div>
+          <button class="ip-close" id="ipClose">✕</button>
+        </div>
+
+        <div class="ip-body">
+          <div class="ip-severity">
+            <span class="sev-label">Tingkat Keparahan</span>
+            <div class="sev-bar-wrap">
+              <div class="sev-bar" id="sevBar" style="width:0%"></div>
+            </div>
+            <span class="sev-desc" id="sevDesc">—</span>
+          </div>
+
+          <div class="ip-keystat">
+            <span class="ks-label">Statistik Utama</span>
+            <span class="ks-val" id="ksVal">—</span>
+            <span class="ks-desc" id="ksDesc">—</span>
+          </div>
+
+          <div class="ip-issues">
+            <span class="ip-issues-title">Isu Kritis di Region Ini</span>
+            <div id="issuesList"></div>
+          </div>
+        </div>
+
+        <a href="index.html#solutions" class="ip-action">
+          🌱 Lihat Solusi yang Bisa Diambil
+        </a>
+      </div>
+
+    </main>
+  </div><!-- /page-wrap -->
+
+  <script src="js/map.js"></script>
+</body>
+
+</html>
