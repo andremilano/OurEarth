@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live Earth Data — OurEarth</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/simulation.css">
+</head>
+
+<body>
+
+  <!-- ══ Navbar ══════════════════════════════ -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <span>OurEarth</span>
+      </a>
+      <div class="live-badge">
+        <span class="live-dot"></span> LIVE
+      </div>
+      <a href="index.html" class="nav-back">
+        <svg viewBox="0 0 24 24">
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+        Beranda
+      </a>
+    </div>
+  </nav>
+
+  <!-- ══ Page Header ══════════════════════════ -->
+  <div class="page-header">
+    <div class="page-header-left">
+      <div class="page-eyebrow">🌍 Simulasi Data Real-Time</div>
+      <h1>Bumi Sedang Berubah<br /><em>Detik Ini Juga</em></h1>
+      <p>Data diperbarui setiap detik berdasarkan rata-rata ilmiah global. Angka-angka ini bukan fiksi — mereka adalah
+        ekstrapolasi dari laporan lingkungan terpercaya.</p>
+    </div>
+    <div class="clock-strip">
+      <span class="clock-label">Waktu Global (UTC)</span>
+      <div class="world-clock" id="worldClock">00:00:00</div>
+      <div class="clock-date" id="clockDate">—</div>
+    </div>
+  </div>
+
+  <!-- ══ Main Content ════════════════════════ -->
+  <div class="main-wrap">
+
+    <!-- Since midnight banner -->
+    <div class="midnight-banner">
+      <div class="mb-label">Sejak tengah malam hari ini</div>
+      <div class="mb-stats">
+        <div class="mb-stat">
+          <span class="mb-stat-val" id="mb-trees">0</span>
+          <span class="mb-stat-label">Pohon ditebang 🌲</span>
+        </div>
+        <div class="mb-sep"></div>
+        <div class="mb-stat">
+          <span class="mb-stat-val" id="mb-plastic">0</span>
+          <span class="mb-stat-label">Ton plastik ke laut 🌊</span>
+        </div>
+        <div class="mb-sep"></div>
+        <div class="mb-stat">
+          <span class="mb-stat-val" id="mb-co2">0</span>
+          <span class="mb-stat-label">Ton CO₂ dilepas 💨</span>
+        </div>
+        <div class="mb-sep"></div>
+        <div class="mb-stat">
+          <span class="mb-stat-val" id="mb-species">0</span>
+          <span class="mb-stat-label">Spesies terancam baru 🦋</span>
+        </div>
+      </div>
+      <div class="mb-elapsed">
+        Berjalan selama <strong id="elapsed">00:00:00</strong> sejak halaman dibuka
+      </div>
+    </div>
+
+    <!-- ══ Counter Cards ══ -->
+    <div class="counters-grid">
+
+      <!-- 1. Trees lost -->
+      <div class="counter-card theme-red">
+        <div class="cc-top">
+          <div class="cc-icon">🌳</div>
+          <div class="cc-pulse"><span class="cc-pulse-dot"></span>Live</div>
+        </div>
+        <div class="cc-value" id="c-trees">0</div>
+        <span class="cc-unit">pohon / detik ini</span>
+        <div class="cc-label">Pohon yang Hilang Hari Ini</div>
+        <div class="cc-desc">Deforestasi global menghancurkan setara 27 lapangan sepak bola setiap menit.</div>
+        <div class="cc-sparkline"><svg id="spark-trees" viewBox="0 0 200 32">
+            <path class="spark-path" id="sparkpath-trees" />
+            <path class="spark-fill" id="sparkfill-trees" />
+          </svg></div>
+        <div class="cc-rate">
+          <span class="cc-rate-arrow">↑</span>
+          <span id="rate-trees">~15.3 pohon/detik</span>
+        </div>
+      </div>
+
+      <!-- 2. Plastic -->
+      <div class="counter-card theme-blue">
+        <div class="cc-top">
+          <div class="cc-icon">🧴</div>
+          <div class="cc-pulse"><span class="cc-pulse-dot"></span>Live</div>
+        </div>
+        <div class="cc-value" id="c-plastic">0</div>
+        <span class="cc-unit">ton plastik / hari ini</span>
+        <div class="cc-label">Plastik Masuk ke Lautan</div>
+        <div class="cc-desc">Setiap menit, setara satu truk sampah plastik dibuang ke laut.</div>
+        <div class="cc-sparkline"><svg id="spark-plastic" viewBox="0 0 200 32">
+            <path class="spark-path" id="sparkpath-plastic" />
+            <path class="spark-fill" id="sparkfill-plastic" />
+          </svg></div>
+        <div class="cc-rate">
+          <span class="cc-rate-arrow">↑</span>
+          <span id="rate-plastic">~253 kg/detik</span>
+        </div>
+      </div>
+
+      <!-- 3. CO2 -->
+      <div class="counter-card theme-orange">
+        <div class="cc-top">
+          <div class="cc-icon">💨</div>
+          <div class="cc-pulse"><span class="cc-pulse-dot"></span>Live</div>
+        </div>
+        <div class="cc-value" id="c-co2">0</div>
+        <span class="cc-unit">ton CO₂ / hari ini</span>
+        <div class="cc-label">Emisi CO₂ Global</div>
+        <div class="cc-desc">Dunia melepas ~37 miliar ton CO₂ per tahun. Setiap detik adalah ~1.173 ton.</div>
+        <div class="cc-sparkline"><svg id="spark-co2" viewBox="0 0 200 32">
+            <path class="spark-path" id="sparkpath-co2" />
+            <path class="spark-fill" id="sparkfill-co2" />
+          </svg></div>
+        <div class="cc-rate">
+          <span class="cc-rate-arrow">↑</span>
+          <span id="rate-co2">~1.173 ton/detik</span>
+        </div>
+      </div>
+
+      <!-- 4. Ice lost -->
+      <div class="counter-card theme-teal">
+        <div class="cc-top">
+          <div class="cc-icon">🧊</div>
+          <div class="cc-pulse"><span class="cc-pulse-dot"></span>Live</div>
+        </div>
+        <div class="cc-value" id="c-ice">0</div>
+        <span class="cc-unit">ton es / hari ini</span>
+        <div class="cc-label">Es Arktik yang Mencair</div>
+        <div class="cc-desc">Arktik kehilangan ~280 miliar ton es per tahun akibat pemanasan global.</div>
+        <div class="cc-sparkline"><svg id="spark-ice" viewBox="0 0 200 32">
+            <path class="spark-path" id="sparkpath-ice" />
+            <path class="spark-fill" id="sparkfill-ice" />
+          </svg></div>
+        <div class="cc-rate">
+          <span class="cc-rate-arrow">↑</span>
+          <span id="rate-ice">~8.876 ton/detik</span>
+        </div>
+      </div>
+
+      <!-- 5. Species -->
+      <div class="counter-card theme-purple">
+        <div class="cc-top">
+          <div class="cc-icon">🦋</div>
+          <div class="cc-pulse"><span class="cc-pulse-dot"></span>Live</div>
+        </div>
+        <div class="cc-value" id="c-species">0.000</div>
+        <span class="cc-unit">spesies punah / hari ini</span>
+        <div class="cc-label">Kehilangan Keanekaragaman Hayati</div>
+        <div class="cc-desc">Ilmuwan memperkirakan 150 spesies punah setiap hari — 1.000x laju alami.</div>
+        <div class="cc-sparkline"><svg id="spark-species" viewBox="0 0 200 32">
+            <path class="spark-path" id="sparkpath-species" />
+            <path class="spark-fill" id="sparkfill-species" />
+          </svg></div>
+        <div class="cc-rate">
+          <span class="cc-rate-arrow">↑</span>
+          <span id="rate-species">~0.00174 spesies/detik</span>
+        </div>
+      </div>
+
+      <!-- 6. Water wasted -->
+      <div class="counter-card theme-blue">
+        <div class="cc-top">
+          <div class="cc-icon">💧</div>
+          <div class="cc-pulse"><span class="cc-pulse-dot"></span>Live</div>
+        </div>
+        <div class="cc-value" id="c-water">0</div>
+        <span class="cc-unit">liter air bersih / hari ini</span>
+        <div class="cc-label">Air Bersih yang Tercemar</div>
+        <div class="cc-desc">Polusi industri dan pertanian mencemari jutaan liter air setiap harinya.</div>
+        <div class="cc-sparkline"><svg id="spark-water" viewBox="0 0 200 32">
+            <path class="spark-path" id="sparkpath-water" />
+            <path class="spark-fill" id="sparkfill-water" />
+          </svg></div>
+        <div class="cc-rate">
+          <span class="cc-rate-arrow">↑</span>
+          <span id="rate-water">~23.148 liter/detik</span>
+        </div>
+      </div>
+
+      <!-- 7. Wildfire -->
+      <div class="counter-card theme-orange">
+        <div class="cc-top">
+          <div class="cc-icon">🔥</div>
+          <div class="cc-pulse"><span class="cc-pulse-dot"></span>Live</div>
+        </div>
+        <div class="cc-value" id="c-fire">0</div>
+        <span class="cc-unit">hektar terbakar / hari ini</span>
+        <div class="cc-label">Lahan Terbakar Kebakaran Hutan</div>
+        <div class="cc-desc">Kebakaran hutan global membakar rata-rata 40 juta hektar per tahun.</div>
+        <div class="cc-sparkline"><svg id="spark-fire" viewBox="0 0 200 32">
+            <path class="spark-path" id="sparkpath-fire" />
+            <path class="spark-fill" id="sparkfill-fire" />
+          </svg></div>
+        <div class="cc-rate">
+          <span class="cc-rate-arrow">↑</span>
+          <span id="rate-fire">~1.268 ha/detik</span>
+        </div>
+      </div>
+
+      <!-- 8. Energy -->
+      <div class="counter-card theme-yellow">
+        <div class="cc-top">
+          <div class="cc-icon">⚡</div>
+          <div class="cc-pulse"><span class="cc-pulse-dot"></span>Live</div>
+        </div>
+        <div class="cc-value" id="c-energy">0</div>
+        <span class="cc-unit">kWh fosil / hari ini</span>
+        <div class="cc-label">Energi Fosil yang Dikonsumsi</div>
+        <div class="cc-desc">Dunia masih bergantung 80% pada bahan bakar fosil untuk kebutuhan energinya.</div>
+        <div class="cc-sparkline"><svg id="spark-energy" viewBox="0 0 200 32">
+            <path class="spark-path" id="sparkpath-energy" />
+            <path class="spark-fill" id="sparkfill-energy" />
+          </svg></div>
+        <div class="cc-rate">
+          <span class="cc-rate-arrow">↑</span>
+          <span id="rate-energy">~172.454 kWh/detik</span>
+        </div>
+      </div>
+
+    </div><!-- /counters-grid -->
+
+    <!-- ══ Alert Cards ══ -->
+    <div class="alerts-grid">
+
+      <!-- Ocean Temperature -->
+      <div class="alert-card alert-red">
+        <div class="ac-header">
+          <div class="ac-icon" style="background:rgba(192,57,43,0.1)">🌡️</div>
+          <div>
+            <div class="ac-title">Suhu Permukaan Laut</div>
+            <div class="ac-sub">Dibandingkan rata-rata 1850–1900 (pra-industri)</div>
+          </div>
+        </div>
+        <div class="ac-bars">
+          <div class="ac-bar-item">
+            <div class="ac-bar-top">
+              <span class="ac-bar-label">Atlantik Utara</span>
+              <span class="ac-bar-val" id="bar-atlantic">+1.8°C</span>
+            </div>
+            <div class="ac-bar-track">
+              <div class="ac-bar-fill" id="fill-atlantic" style="width:72%;background:var(--red)"></div>
+            </div>
+          </div>
+          <div class="ac-bar-item">
+            <div class="ac-bar-top">
+              <span class="ac-bar-label">Pasifik Ekuatorial</span>
+              <span class="ac-bar-val" id="bar-pacific">+1.3°C</span>
+            </div>
+            <div class="ac-bar-track">
+              <div class="ac-bar-fill" id="fill-pacific" style="width:52%;background:var(--orange)"></div>
+            </div>
+          </div>
+          <div class="ac-bar-item">
+            <div class="ac-bar-top">
+              <span class="ac-bar-label">Arktik</span>
+              <span class="ac-bar-val" id="bar-arctic">+3.1°C</span>
+            </div>
+            <div class="ac-bar-track">
+              <div class="ac-bar-fill" id="fill-arctic" style="width:94%;background:var(--red)"></div>
+            </div>
+          </div>
+          <div class="ac-bar-item">
+            <div class="ac-bar-top">
+              <span class="ac-bar-label">Laut Mediterania</span>
+              <span class="ac-bar-val" id="bar-med">+1.5°C</span>
+            </div>
+            <div class="ac-bar-track">
+              <div class="ac-bar-fill" id="fill-med" style="width:60%;background:var(--orange)"></div>
+            </div>
+          </div>
+        </div>
+        <div class="ac-ticker">
+          <span class="ac-ticker-label">Suhu rata-rata global saat ini</span>
+          <span class="ac-ticker-val" id="ticker-temp">14.89°C</span>
+        </div>
+      </div>
+
+      <!-- Air Quality Index -->
+      <div class="alert-card alert-orange">
+        <div class="ac-header">
+          <div class="ac-icon" style="background:rgba(198,93,42,0.1)">😷</div>
+          <div>
+            <div class="ac-title">Indeks Kualitas Udara</div>
+            <div class="ac-sub">PM2.5 simulasi kota-kota besar dunia (µg/m³)</div>
+          </div>
+        </div>
+        <div class="ac-bars">
+          <div class="ac-bar-item">
+            <div class="ac-bar-top">
+              <span class="ac-bar-label">Delhi, India</span>
+              <span class="ac-bar-val" id="aqi-delhi">158 µg/m³</span>
+            </div>
+            <div class="ac-bar-track">
+              <div class="ac-bar-fill" id="filli-delhi" style="width:79%;background:var(--red)"></div>
+            </div>
+          </div>
+          <div class="ac-bar-item">
+            <div class="ac-bar-top">
+              <span class="ac-bar-label">Beijing, Tiongkok</span>
+              <span class="ac-bar-val" id="aqi-beijing">112 µg/m³</span>
+            </div>
+            <div class="ac-bar-track">
+              <div class="ac-bar-fill" id="filli-beijing" style="width:56%;background:var(--orange)"></div>
+            </div>
+          </div>
+          <div class="ac-bar-item">
+            <div class="ac-bar-top">
+              <span class="ac-bar-label">Jakarta, Indonesia</span>
+              <span class="ac-bar-val" id="aqi-jakarta">89 µg/m³</span>
+            </div>
+            <div class="ac-bar-track">
+              <div class="ac-bar-fill" id="filli-jakarta" style="width:44%;background:var(--yellow)"></div>
+            </div>
+          </div>
+          <div class="ac-bar-item">
+            <div class="ac-bar-top">
+              <span class="ac-bar-label">Nairobi, Kenya</span>
+              <span class="ac-bar-val" id="aqi-nairobi">41 µg/m³</span>
+            </div>
+            <div class="ac-bar-track">
+              <div class="ac-bar-fill" id="filli-nairobi" style="width:20%;background:var(--yellow)"></div>
+            </div>
+          </div>
+        </div>
+        <div class="ac-ticker">
+          <span class="ac-ticker-label">Orang terpapar udara tidak sehat hari ini</span>
+          <span class="ac-ticker-val" id="ticker-aqi">0</span>
+        </div>
+      </div>
+
+    </div><!-- /alerts-grid -->
+
+    <!-- ══ CO2 + Event Log ══ -->
+    <div class="co2-section">
+
+      <div class="co2-card">
+        <div class="co2-header">
+          <div class="co2-title">Konsentrasi CO₂ Atmosfer <em>(ppm)</em></div>
+          <div class="live-badge"><span class="live-dot"></span> Real-time</div>
+        </div>
+        <div class="gauge-wrap">
+          <div class="gauge-svg-wrap">
+            <svg id="gaugesvg" viewBox="0 0 160 160">
+              <!-- Background track -->
+              <circle cx="80" cy="80" r="64" fill="none" stroke="var(--cream-3)" stroke-width="12"
+                stroke-dasharray="302 402" stroke-dashoffset="-50" stroke-linecap="round" />
+              <!-- Safe zone (green) -->
+              <circle cx="80" cy="80" r="64" fill="none" stroke="#A3B18A" stroke-width="12" stroke-dasharray="90 352"
+                stroke-dashoffset="-50" stroke-linecap="round" opacity="0.5" />
+              <!-- Warning zone (yellow) -->
+              <circle cx="80" cy="80" r="64" fill="none" stroke="#C4933A" stroke-width="12" stroke-dasharray="70 362"
+                stroke-dashoffset="-140" stroke-linecap="round" opacity="0.5" />
+              <!-- Danger zone (red) -->
+              <circle cx="80" cy="80" r="64" fill="none" stroke="#C0392B" stroke-width="12" stroke-dasharray="60 382"
+                stroke-dashoffset="-210" stroke-linecap="round" opacity="0.5" />
+              <!-- Active fill -->
+              <circle cx="80" cy="80" r="64" fill="none" stroke="var(--orange)" stroke-width="12"
+                stroke-dasharray="0 402" stroke-dashoffset="-50" stroke-linecap="round" id="gaugeFill"
+                style="transition: stroke-dasharray 1s ease" />
+              <!-- Center circle -->
+              <circle cx="80" cy="80" r="48" fill="var(--cream-2)" />
+            </svg>
+            <div class="gauge-center-val">
+              <span class="gcv-num" id="gaugePPM">421.3</span>
+              <span class="gcv-unit">ppm CO₂</span>
+            </div>
+          </div>
+          <div class="gauge-legend">
+            <div class="gl-item"><span class="gl-dot" style="background:#A3B18A"></span><span
+                class="gl-label">Pra-industri: <strong>280 ppm</strong></span></div>
+            <div class="gl-item"><span class="gl-dot" style="background:#C4933A"></span><span class="gl-label">Batas
+                aman: <strong>350 ppm</strong></span></div>
+            <div class="gl-item"><span class="gl-dot" style="background:#C0392B"></span><span class="gl-label">Darurat
+                iklim: <strong>400 ppm</strong></span></div>
+            <div class="gl-item"><span class="gl-dot" style="background:var(--orange)"></span><span
+                class="gl-label">Sekarang: <strong id="legendPPM">~421 ppm</strong></span></div>
+            <div class="gl-item" style="margin-top:0.5rem">
+              <span class="gl-dot" style="background:var(--text-soft)"></span>
+              <span class="gl-label">+<strong id="legendIncrease">0.0000</strong> ppm sejak buka halaman ini</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Event log -->
+      <div class="co2-log">
+        <div class="log-header">
+          <div class="log-title">📋 Log Kejadian Lingkungan</div>
+          <button class="log-clear" id="logClear">Bersihkan</button>
+        </div>
+        <div class="log-feed" id="logFeed">
+          <div class="log-entry">
+            <span class="log-time" id="initTime">--:--:--</span>
+            <span class="log-dot" style="background:var(--olive)"></span>
+            <span class="log-text">🌿 Sistem monitoring dimulai. Memuat data lingkungan...</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /co2-section -->
+
+  </div><!-- /main-wrap -->
+
+  <!-- Disclaimer -->
+  <div class="data-disclaimer">
+    <span class="dd-icon">ℹ️</span>
+    <div class="dd-text">
+      <strong>Catatan metodologi:</strong> Angka-angka di atas adalah simulasi edukatif berbasis rata-rata ilmiah dari
+      laporan
+      <a href="#">Global Forest Watch</a>, <a href="#">NOAA</a>, <a href="#">IPCC 2023</a>, dan <a href="#">WWF Living
+        Planet Report</a>.
+      Data diperbarui setiap detik dengan variasi acak ±5% untuk mensimulasikan fluktuasi nyata.
+      Tujuan halaman ini adalah membangun kesadaran, bukan menyajikan data operasional real-time.
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <a href="index.html" class="logo"><span>🌿</span><span style="color:#fff">OurEarth</span></a>
+      <p>© 2025 OurEarth · Data simulasi untuk tujuan edukasi</p>
+    </div>
+  </footer>
+
+  <script src="js/simulation.js"></script>
+</body>
+
+</html>

@@ -62,9 +62,6 @@ Pendekatan ini memberikan kesan:
 - Intersection Observer API
 - Custom animation (CSS & JS)
 
-No backend. Static website only.
-
----
 
 ## 🎨 Design System
 
